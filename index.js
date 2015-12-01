@@ -54,7 +54,6 @@ var usage = [
 
 var template = [
 	''
-	, 'var mongodb = require(\'mongodb\');'
 	, ''
 	, 'exports.up = function(db, next){'
 	, '    next();'
@@ -214,7 +213,6 @@ function runMongoMigrate(direction, migrationEnd, next) {
 		 * create [title]
 		 */
 		create: function(){
-			console.log('mytest')
 			var migrations = fs.readdirSync('migrations').filter(function(file){
 				return file.match(/^\d+/);
 			}).map(function(file){
