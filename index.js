@@ -24,7 +24,7 @@ var previousWorkingDirectory = process.cwd();
 
 var configFileName = 'default-config.json',
 		dbConfig = null,
-		dbProperty = 'mongoAppDb';
+		dbProperty = 'database';
 
 /**
  * Usage information.
@@ -188,7 +188,7 @@ function runMongoMigrate(direction, migrationEnd, next) {
 	// create ./migrations
 
 	try {
-		fs.mkdirSync('migrations', 0774);
+		fs.mkdirSync('migrations', '0774');
 	} catch (err) {
 		// ignore
 	}
@@ -214,6 +214,7 @@ function runMongoMigrate(direction, migrationEnd, next) {
 		 * create [title]
 		 */
 		create: function(){
+			console.log('mytest')
 			var migrations = fs.readdirSync('migrations').filter(function(file){
 				return file.match(/^\d+/);
 			}).map(function(file){
@@ -222,7 +223,7 @@ function runMongoMigrate(direction, migrationEnd, next) {
 						return a - b;
 					});
 
-			var curr = pad((migrations.pop() || 0) + 5),
+			var curr = pad((migrations.pop() || 0) + 1),
 					title = slugify([].slice.call(arguments).join(' '));
 			title = title ? curr + '-' + title : curr;
 			create(title);
